@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="gamebord">
+       <img class="pipe" src="Nova pasta/pipe.png" alt="">
+       <img class="mario" src="Nova pasta/mario.gif" alt="">
+       <img class="nuvem" src="Nova pasta/clouds.png" alt="">
+     </div> 
+     
+     <script> const mario = document.querySelector('.mario');
+        const pipe = document.querySelector('.pipe')
+        
+        const jump =()=>{
+            mario.classList.add('jump');
+        
+            setTimeout(()=>{
+                mario.classList.remove('jump');
+            },500 );
+        }
+        
+        const loop = setInterval(()=>{
+            console.log('loop')
+        
+            const pipeposi= pipe.offsetLeft;
+            const marioposi = +window.getComputedStyle(mario).bottom.replace('px','');
+        
+            if (pipeposi < 120 && pipeposi >0 && marioposi < 80){
+                    pipe.style.animation ='none';
+                    pipe.style.left = `${pipeposi}px`;
+        
+                    mario.style.animation='none';
+                    mario.style.bottom=`${marioposi}px`;
+        
+                    mario.src ="Nova pasta/game-over.png";
+                    mario.style.width = '75px'
+                    mario.style.marginleft='50px'
+        
+                clearInterval(loop);
+                 }
+        
+        },10);
+        
+        document.addEventListener('keydown', jump);</script>
+       
+
+     
+</body>
+</html>
